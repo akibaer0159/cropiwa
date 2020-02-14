@@ -138,38 +138,7 @@ class CropIwaOverlayView extends View implements ConfigChangeListener, OnImagePo
         if (viewWidth == 0 || viewHeight == 0) {
             return;
         }
-
-        AspectRatio aspectRatio = getAspectRatio();
-        if (aspectRatio == null) {
-            return;
-        }
-
-        if (cropRect.width() != 0 && cropRect.height() != 0) {
-            float currentRatio = cropRect.width() / cropRect.height();
-            if (Math.abs(currentRatio - aspectRatio.getRatio()) < 0.001) {
-                return;
-            }
-        }
-
-        float centerX = viewWidth * 0.5f;
-        float centerY = viewHeight * 0.5f;
-        float halfWidth, halfHeight;
-
-        boolean calculateFromWidth =
-                aspectRatio.getHeight() < aspectRatio.getWidth()
-                        || (aspectRatio.isSquare() && viewWidth < viewHeight);
-
-        if (calculateFromWidth) {
-            halfWidth = viewWidth * cropScale * 0.5f;
-            halfHeight = halfWidth / aspectRatio.getRatio();
-        } else {
-            halfHeight = viewHeight * cropScale * 0.5f;
-            halfWidth = halfHeight * aspectRatio.getRatio();
-        }
-
-        cropRect.set(
-                centerX - halfWidth, centerY - halfHeight,
-                centerX + halfWidth, centerY + halfHeight);
+        cropRect.set(0, 0, viewWidth, viewHeight);
     }
 
     @Nullable
