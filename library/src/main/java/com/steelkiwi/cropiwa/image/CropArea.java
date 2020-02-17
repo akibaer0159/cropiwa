@@ -44,7 +44,7 @@ public class CropArea {
             y = bitmap.getHeight() - height;
         }
         
-        Log.d("CropArea", "x/y/with/height : " + x + "/" + y + "/" + width + "/" + height);
+        
         Bitmap immutableCropped = Bitmap.createBitmap(bitmap,
                 x,
                 y,
